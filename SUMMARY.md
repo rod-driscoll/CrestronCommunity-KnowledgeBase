@@ -27,3 +27,7 @@
 ## Links
 
 * [Open-Source S#/S#Pro frameworks](links/open-source-s-s-pro-frameworks.md)
+
+## 4-Series
+
+* [CP4 Deployment Gotchas](4-series/deployment-gotchas.md)
