@@ -27,3 +27,7 @@
 ## Links
 
 * [Open-Source S#/S#Pro frameworks](links/open-source-s-s-pro-frameworks.md)
+
+## 4-Series
+
+* [4-Series Programming — Lessons Learnt](4-series/programming-lessons-learnt.md)
