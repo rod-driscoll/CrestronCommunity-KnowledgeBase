@@ -52,6 +52,7 @@ Use SDK-style projects everywhere, and expect to own part of the build because C
 - The net472 packages still ship `SimplSharpNewtonsoft`, which clashes with real Newtonsoft. Alias it out with a target that sets `<Aliases>doNotUse</Aliases>` on that `ReferencePath` (pinned in the channel), or use `extern alias`.
 - Crestron's package signing certificate chains to Entrust, which Linux trust stores distrusted in late 2024. `dotnet restore` / `nuget verify` then fails in GitHub Actions and devcontainers; build on Windows runners.
 - Stale Crestron packages cause odd runtime errors: `InvalidCastException` from `DmNvxE30` to `DmNvxBaseClass` or `Ts1070` to `TsX70Base`, and `Could not load Microsoft.AspNetCore 8.0.0`. Update every project to the same package version.
+- `Crestron.SimplSharp.SDK.Program` and `Crestron.SimplSharp.SDK.Library` are on **nuget.org** — no private feed, no authentication required. A plain `nuget.config` listing only `https://api.nuget.org/v3/index.json` is sufficient. The private-feed placeholder that appears in older project templates is a red herring; ignore it.
 
 **Third-party packages**
 
