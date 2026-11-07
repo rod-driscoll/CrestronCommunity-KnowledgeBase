@@ -56,6 +56,10 @@ These patterns appear across projects with near-identical implementations. Copy 
 
 **Extended variant:** Identical pattern; also includes `AdminHandler.cs` for a separate HTTP admin API endpoint.
 
+**CP4N limitation:** On CP4N, `System.Net` listeners (`HttpListener`, Kestrel) only bind to `172.22.x.x` — the internal control-subnet NIC, which is invisible to LAN clients. This pattern works on CP4 / RMC4. For CP4N, use `HttpCwsServer` (CWS) instead, which routes through the firmware's port-80 web server on the LAN NIC.
+
+**CWS thread lifecycle (CP4N):** CWS `ProcessRequest` handlers run on unmanaged firmware threads. A hung handler survives `PROGRESET`/`PROGLOAD` — the new program's `Register()` returns `false` and `PROGLOAD` stalls waiting for un-registration. Only a full `REBOOT` clears it. Prevention: subscribe to `ProgramStatusEventHandler` and call `HttpCwsServer.Dispose()` on `eProgramStatusEventType.Stopping`.
+
 ---
 
 ### 2. Static File Host
